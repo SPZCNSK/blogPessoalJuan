@@ -1,7 +1,19 @@
-import { NgModule } from '@angular/core';
+import { EntrarComponent } from './entrar/entrar.component';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
+
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+// Array de objetos de rotas
+const routes: Routes = [
+  // os objetos dentro do array ficam entre chaves {} e são separados por vírgula
+  // pathMatch traz toda a rota
+  {path: '', redirectTo: 'entrar', pathMatch: 'full'},
+  
+  {path: 'entrar', component: EntrarComponent},
+  
+  {path: 'cadastrar', component: CadastrarComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

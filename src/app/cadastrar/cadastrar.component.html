@@ -51,7 +51,10 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-danger mr-4">Cancelar</button>
+                        <!-- No Angular:
+                        routerLink => permite a navegação entre os components do próprio site/ projeto; rotas internas
+                        href => faz o link com sites de terceiros, ou seja, rotas externas -->
+                        <button type="submit" class="btn btn-danger mr-4" routerLink="/entrar">Cancelar</button>
                         <button type="submit" class="btn btn-success">Cadastrar</button>
                     </div>
 
