@@ -12,38 +12,38 @@
 
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Seu nome">
+                        <input [(ngModel)]="usuario.nome" type="text" class="form-control" name="nome" id="nome" placeholder="Seu nome">
                     </div>
 
                     <div class="form-group">
                         <label for="usuario">Usuário</label>
-                        <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Seu usuário">
+                        <input [(ngModel)]="usuario.usuario" type="text" class="form-control" name="usuario" id="usuario" placeholder="Seu usuário">
                     </div>
 
                     <div class="form-group">
                         <label for="foto">Link da Foto</label>
-                        <input type="text" class="form-control" name="foto" id="foto" placeholder="Link da sua foto">
+                        <input [(ngModel)]="usuario.foto" type="text" class="form-control" name="foto" id="foto" placeholder="Link da sua foto">
                     </div>
 
                     <div class="form-group">
                         <label for="dataNasc">Data de Nascimento</label>
-                        <input type="date" class="form-control" name="dataNasc" id="dataNasc">
+                        <input [(ngModel)]="usuario.dataNascimento"type="date" class="form-control" name="dataNasc" id="dataNasc">
                     </div>
 
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="password" class="form-control" name="senha" id="senha" placeholder="Sua senha">
+                        <input (input)="confirmSenha($event)" type="password" class="form-control" name="senha" id="senha" placeholder="Sua senha">
                     </div>
 
                     <div class="form-group">
                         <label for="confirmSenha">Confirmar Senha</label>
-                        <input type="password" class="form-control" name="confirmSenha" id="confirmSenha"
+                        <input [(ngModel)]="usuario.senha" type="password" class="form-control" name="confirmSenha" id="confirmSenha"
                             placeholder="Confirme sua senha">
                     </div>
 
                     <div class="form-group">
                         <label for="tipo">Tipo de usuario</label>
-                        <select class="form-control" name="tipo" id="tipo">
+                        <select class="form-control" name="tipo" id="tipo" (change)="tipoUsuario($event)">
                             <option value="">Selecione um tipo de usuário</option>
                             <option value="normal">Usuário Padrão</option>
                             <option value="adm">Administrador</option>
@@ -55,7 +55,7 @@
                         routerLink => permite a navegação entre os components do próprio site/ projeto; rotas internas
                         href => faz o link com sites de terceiros, ou seja, rotas externas -->
                         <button type="submit" class="btn btn-danger mr-4" routerLink="/entrar">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="submit" class="btn btn-success" (click)="cadastrar()">Cadastrar</button>
                     </div>
 
                 </div>

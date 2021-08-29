@@ -3,6 +3,7 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InicioComponent } from './inicio/inicio.component';
 
 // Array de objetos de rotas
 const routes: Routes = [
@@ -12,7 +13,9 @@ const routes: Routes = [
   
   {path: 'entrar', component: EntrarComponent},
   
-  {path: 'cadastrar', component: CadastrarComponent}
+  {path: 'cadastrar', component: CadastrarComponent},
+
+  {path: 'inicio', component: InicioComponent}
 ];
 
 @NgModule({
