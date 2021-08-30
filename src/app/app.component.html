@@ -1,3 +1,5 @@
 <!-- A estrutura HTML está pronta em 'enviroments>index.html' e não precisa ser criada novamente -->
 <!-- router-outlet => as rotas ficam dinamicas -->
+<app-menu *ngIf="auth.logado()"></app-menu>
 <router-outlet></router-outlet>
+<app-rodape *ngIf="auth.logado()"></app-rodape>
