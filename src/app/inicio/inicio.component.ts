@@ -16,6 +16,7 @@ import { TemaService } from '../service/tema.service';
 export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
+  listaPostagens: Postagem[]
 
   tema: Tema = new Tema();
   listaTemas: Tema[]
@@ -23,7 +24,7 @@ export class InicioComponent implements OnInit {
 
 
   usuario: Usuario = new Usuario()
-  idUser = environment.id  
+  idUser = environment.id
 
 
   constructor(
@@ -36,44 +37,52 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
 
     if (environment.token == '') {
-      alert('Sua seção expirou, faça o login novamente.')
+      // alert('Sua seção expirou, faça o login novamente.')
       this.router.navigate(['/entrar'])
     }
+
     this.findAllTemas()
+    this.getAllPostagens()
   }
 
-findAllTemas(){
-  this.temaService.getAllTema().subscribe((resp: Tema[]) => {
-    this.listaTemas = resp
-  })
-}
+  findAllTemas() {
+    this.temaService.getAllTema().subscribe((resp: Tema[]) => {
+      this.listaTemas = resp
+    })
+  }
 
-findByIdTema(id: number){
-  this.temaService.getByIdTema(id).subscribe((resp: Tema) => {
-    this.tema = resp
-  })
-}
+  findByIdTema(id: number) {
+    this.temaService.getByIdTema(id).subscribe((resp: Tema) => {
+      this.tema = resp
+    })
+  }
 
-findByIdUser(){
-  this.authService.getUserById(this.idUser).subscribe((resp: Usuario)=>{
-    this.usuario = resp
-  })
-}
+  findByIdUser() {
+    this.authService.getByIdUser(this.idUser).subscribe((resp: Usuario) => {
+      this.usuario = resp
+    })
+  }
 
-publicar(){
-  this.tema.id = this.idTema
-  this.postagem.tema = this.tema
+  getAllPostagens() {
+    this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) => {
+      this.listaPostagens = resp
+    })
+  }
 
-  this.usuario.id = this.idUser
-  this.postagem.usuario = this.usuario
+  publicar() {
+    this.tema.id = this.idTema
+    this.postagem.tema = this.tema
 
-  console.log(this.postagem)
-  this.postagemService.postPostagem(this.postagem).subscribe((resp:  Postagem)=>{
-    this.postagem = resp
-    alert('Postagem feita com sucesso')
-    this.postagem = new Postagem()
-  })
-}
+    this.usuario.id = this.idUser
+    this.postagem.usuario = this.usuario
 
+    // console.log(this.postagem)
+    this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
+      this.postagem = resp
+      alert('Postagem feita com sucesso')
+      this.postagem = new Postagem()
+      this.getAllPostagens()
+    })
+  }
 
 }
