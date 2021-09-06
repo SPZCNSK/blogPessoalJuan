@@ -14,21 +14,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PostagemEditComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
-    
+
   tema: Tema = new Tema()
   listaTemas: Tema[]
   idTema: number
 
   constructor(
     private router: Router,
-    private postagemService: PostagemService,
-    private temaService: TemaService,
-    private route: ActivatedRoute
     // serviço interno do Angular-> ActivatedRoute => observa a barra de endereços "procurando alguma coisa"
+    private route: ActivatedRoute,
+    private postagemService: PostagemService,
+    private temaService: TemaService
   ) { }
 
   ngOnInit() {
-    if(environment.token == ''){
+
+    window.scroll(0,0)
+
+    if (environment.token == '') {
       this.router.navigate(['/entrar'])
     }
 
@@ -36,33 +39,32 @@ export class PostagemEditComponent implements OnInit {
     // ele vai pegar apenas o parâmetro determinado abaixo, no caso o id
     let id = this.route.snapshot.params['id']
     this.findPostagemById(id)
-
     this.findAllTemas()
   }
 
-  findAllTemas(){
-    this.temaService.getAllTema().subscribe((resp: Tema[]) => {
-      this.listaTemas = resp
+  findPostagemById(id: number) {
+    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem) => {
+      this.postagem = resp
     })
   }
 
-  findByIdTema(){
+  findByIdTema() {
     this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
       this.tema = resp
     })
   }
 
-  findPostagemById(id: number){
-    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem)=>{
-      this.postagem = resp
+  findAllTemas() {
+    this.temaService.getAllTema().subscribe((resp: Tema[]) => {
+      this.listaTemas = resp
     })
   }
 
-  atualizar(){
+  atualizar() {
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
 
-    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem)=>{
+    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp
       alert('Postagem editada com sucesso')
       this.router.navigate(['/inicio'])

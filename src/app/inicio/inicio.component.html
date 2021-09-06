@@ -68,7 +68,8 @@
                 <small class="text-muted">Tema: {{item.tema.descricao}}</small>
                 <p class="card-text mt-3">{{item.texto}}</p>
                 <p class="card-text"><small class="text-muted">{{item.date | date: 'dd/MM/yyyy'}} às {{item.date | date: 'HH:mm'}}</small></p>                
-                <button class="btn btn-info" [routerLink]="['/postagem-edit', item.id]">Editar</button>
+                <button class="btn btn-info mr-2" [routerLink]="['/postagem-edit', item.id]">Editar</button>
+                <button class="btn btn-danger" [routerLink]="['/postagem-delete', item.id]">Apagar</button>
               </div>
             </div>
           </div>
@@ -85,10 +86,7 @@
                 <p class="card-text">
                   <small class="text-muted">{{item.date | date: 'dd/MM/yyyy'}} às {{item.date | date: 'HH:mm'}}</small>
                 </p>              
-                <p class="card-text">
-                  <small class="text-muted">
-
-                </small></p>
+                <p class="card-text"><small class="text-muted">by: {{item.usuario.nome}}</small></p>
               </div>
             </div>
           </div>
@@ -123,8 +121,8 @@
 
           <div class="form-group">
             <label for="tema">Escolha um tema ou <a data-dismiss="modal" routerLink="/tema">cadastre um novo</a>: </label>
-            <select name="tema" id="tema" class="form-control" [(ngModel)]='idTema' (change)='findByIdTema(idTema)'>
-              <option value="{{tema.id}}" *ngFor='let tema of listaTemas'>{{tema.descricao}}</option>
+            <select name="tema" id="tema" class="form-control" [(ngModel)]='idTema' (change)='findByIdTema()'>
+              <option *ngFor='let item of listaTemas' value="{{item.id}}">{{item.descricao}}</option>
             </select>
               
           </div>

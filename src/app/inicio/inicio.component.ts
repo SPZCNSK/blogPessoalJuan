@@ -41,31 +41,31 @@ export class InicioComponent implements OnInit {
       this.router.navigate(['/entrar'])
     }
 
-    this.findAllTemas()
+    this.getAllTemas()
     this.getAllPostagens()
   }
 
-  findAllTemas() {
+  getAllTemas() {
     this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp
     })
   }
 
-  findByIdTema(id: number) {
-    this.temaService.getByIdTema(id).subscribe((resp: Tema) => {
+  findByIdTema() {
+    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
       this.tema = resp
     })
   }
-
-  findByIdUser() {
-    this.authService.getByIdUser(this.idUser).subscribe((resp: Usuario) => {
-      this.usuario = resp
-    })
-  }
-
+  
   getAllPostagens() {
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) => {
       this.listaPostagens = resp
+    })
+  }
+  
+  findByIdUser() {
+    this.authService.getByIdUser(this.idUser).subscribe((resp: Usuario) => {
+      this.usuario = resp
     })
   }
 

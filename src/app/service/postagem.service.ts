@@ -32,9 +32,9 @@ export class PostagemService {
     return this.http.put<Postagem>('https://blogpessjuan.herokuapp.com/postagens', postagem, this.token)
   }
 
-  // deletePostagem(id: number){
-  //   return this.http.delete(`https://blogpessjuan.herokuapp.com/postagens/${id}`, this.token)
-  // }
+  deletePostagem(id: number){
+    return this.http.delete(`https://blogpessjuan.herokuapp.com/postagens/${id}`, this.token)
+  }
 
 
 
