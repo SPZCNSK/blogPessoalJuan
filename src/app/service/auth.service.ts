@@ -20,6 +20,10 @@ export class AuthService {
     return this.http.post<Usuario>('https://blogpessjuan.herokuapp.com/usuarios/cadastrar',usuario)
   }
 
+  atualizar(usuario: Usuario): Observable<Usuario>{
+    return this.http.put<Usuario>('https://blogpessjuan.herokuapp.com/usuarios/alterar',usuario)
+  }
+
   getByIdUser(id: number): Observable<Usuario>{
     return this.http.get<Usuario>(`https://blogpessjuan.herokuapp.com/usuarios/${id}`)
   }
@@ -28,6 +32,16 @@ export class AuthService {
     let ok: boolean = false
 
     if(environment.token != ''){
+      ok = true
+    }
+
+    return ok
+  }
+
+  adm(){
+    let ok: boolean = false
+    
+    if(environment.tipo == 'adm'){
       ok = true
     }
 

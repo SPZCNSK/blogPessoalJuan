@@ -51,7 +51,7 @@ export class UsuarioEditComponent implements OnInit {
       this.alertas.showAlertDanger("As senhas estão diferentes")
     }
     else{
-      this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
+      this.authService.atualizar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
         this.router.navigate(['/inicio'])
         this.alertas.showAlertSuccess('Usuário atualizado com sucesso, faça o login novamente.')
