@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Tema } from '../model/Tema';
+import { AlertasService } from '../service/alertas.service';
 import { TemaService } from '../service/tema.service';
 
 @Component({
@@ -15,7 +16,9 @@ export class TemaComponent implements OnInit {
   listaTemas: Tema[]
 
   constructor(
-    private router: Router, private temaService: TemaService
+    private router: Router, 
+    private temaService: TemaService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -36,7 +39,7 @@ export class TemaComponent implements OnInit {
   cadastrarTema(){
     this.temaService.postTema(this.tema).subscribe((resp: Tema) => {
       this.tema = resp //pega os dados do backend e cadastra o tema
-      alert('Tema cadastrado')
+      this.alertas.showAlertSuccess('Tema cadastrado')
       this.findAllTemas()
       this.tema = new Tema() //zera o input de cadastro de tema
     })

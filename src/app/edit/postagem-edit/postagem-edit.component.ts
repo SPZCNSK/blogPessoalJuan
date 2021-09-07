@@ -5,6 +5,7 @@ import { Postagem } from 'src/app/model/Postagem';
 import { Tema } from 'src/app/model/Tema';
 import { environment } from 'src/environments/environment.prod';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-postagem-edit',
@@ -24,7 +25,8 @@ export class PostagemEditComponent implements OnInit {
     // serviço interno do Angular-> ActivatedRoute => observa a barra de endereços "procurando alguma coisa"
     private route: ActivatedRoute,
     private postagemService: PostagemService,
-    private temaService: TemaService
+    private temaService: TemaService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
