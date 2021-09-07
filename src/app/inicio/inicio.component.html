@@ -46,7 +46,7 @@
     <!-- ! Começo de todas as postagens -->
             <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">        
           <div class="card-columns">
-            <div class="card text-center" *ngFor='let item of listaPostagens'>
+            <div class="card text-center" *ngFor='let item of listaPostagens | orderBy : key : reverse'>
               <div class="card-body">
                 <h5 class="card-title m-0">{{item.titulo}}</h5>
                 <small class="text-muted">Tema: {{item.tema.descricao}}</small>
@@ -62,7 +62,7 @@
        <!-- ! Começo minhas postagens -->
         <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="minhasPostagens-tab">
           <div class="card-columns">
-            <div class="card text-center" *ngFor='let item of usuario.postagem'>
+            <div class="card text-center" *ngFor='let item of usuario.postagem  | orderBy : key : reverse'>
               <div class="card-body">
                 <h5 class="card-title m-0">{{item.titulo}}</h5>
                 <small class="text-muted">Tema: {{item.tema.descricao}}</small>
@@ -79,7 +79,7 @@
         <!-- ! Começo postagens por tema -->
         <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="postagemTema-tab">          
           <div class="card-columns" *ngFor="let tema of listaTemas">            
-            <div class="card text-center" *ngFor='let item of tema.postagem'>
+            <div class="card text-center" *ngFor='let item of tema.postagem | orderBy : key : reverse'>
               <div class="card-body">
                 <h5 class="card-title m-0">{{item.titulo}}</h5>               
                 <p class="card-text mt-3">{{item.texto}}</p>
