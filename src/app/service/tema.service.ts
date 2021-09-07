@@ -24,6 +24,10 @@ export class TemaService {
     return this.http.get<Tema>(`https://blogpessjuan.herokuapp.com/tema/${id}`, this.token)
   }
 
+  getByNomeTema(nome: string): Observable<Tema[]>{
+    return this.http.get<Tema[]>(`https://blogpessjuan.herokuapp.com/tema/nome/${nome}`, this.token)
+  }
+
   // sempre que se cria um post é preciso passar uma variável e uma model
   postTema(temaCadastro: Tema): Observable<Tema>{
     return this.http.post<Tema>("https://blogpessjuan.herokuapp.com/tema", temaCadastro, this.token)
